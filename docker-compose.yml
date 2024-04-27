@@ -9,6 +9,10 @@ services:
           groupmod -n $$USER -g $$USER_GID user
           chown -R $$USER:$$USER /home/user
         fi
+        if [ ! -d socsel-analysis-modules ]; then
+          git clone "https://github.com/Wakayama-SocSEL/socsel-analysis-modules.git"
+          chown -R $$USER:$$USER socsel-analysis-modules
+        fi
         exec gosu $$USER "$$0" "$$@"
       '
     environment:
