@@ -1,0 +1,10 @@
+#!/bin/sh
+
+export USER_UID=$(whoami | id -u)
+export USER_GID=$(whoami | id -g)
+
+if [ "$1" = "up" ]; then
+    docker-compose up
+elif [ "$1" = "down" ]; then
+    docker-compose down --rmi local
+fi

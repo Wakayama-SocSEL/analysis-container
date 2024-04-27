@@ -1,0 +1,23 @@
+services:
+  main:
+    build: .
+    command: /home/user/code tunnel --name $HOSTNAME --no-sleep
+    entrypoint: |
+      bash -c '
+        if ls -dl /home/user | grep " user "; then
+          usermod  -l $$USER -u $$USER_UID user
+          groupmod -n $$USER -g $$USER_GID user
+          chown -R $$USER:$$USER /home/user
+        fi
+        exec gosu $$USER "$$0" "$$@"
+      '
+    environment:
+      HOSTNAME: $HOSTNAME
+      SHELL: zsh
+      USER: $USER
+      USER_UID: $USER_UID
+      USER_GID: $USER_GID
+    user: root
+    volumes:
+      - .:/workspace
+    working_dir: /workspace
