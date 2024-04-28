@@ -1,24 +1,36 @@
-# Analysis Container
+# Archive
 
-## Setup
+## About
+- 研究タイトル：
+- 作成者：
+- 作成期間：202X年4月~202X年3月
+- サーバ上の保存場所：
+
+## Usage
+```bash
+./task install && ./task run
+```
+
+## Template Setup
 1. 2つのリポジトリを作成します
-   - a. [本テンプレート](https://github.com/Wakayama-SocSEL/analysis-container-template)を使用したリポジトリ[*](https://docs.github.com/ja/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template)
-      - Repository Name：任意
-      - Owner：個人のGitHubアカウント
-      - Public/Private：任意
-   - b. [lab-modules](https://github.com/Wakayama-SocSEL/lab-modules)のフォークリポジトリ
+   - [本テンプレート](https://github.com/Wakayama-SocSEL/archive-template)を使用したリポジトリ[*](https://docs.github.com/ja/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template)
+      - Repository Name：卒業年度_名字（例：2012_Ihara）
+      - Owner：Wakayama-SocSEL
+      - Public/Private：Private
+   - [lab-modules](https://github.com/Wakayama-SocSEL/lab-modules)のフォークリポジトリ
       - Repository Name：lab-modules
       - Owner：個人のGitHubアカウント
 
-2. 手順1-aで作成したリポジトリをクローンします
+2. 手順1で作成した2つのリポジトリをクローンします
    - ⚠️ 本テンプレートはlinux環境（リモートサーバ）での使用を想定しています
 ```bash
-git clone https://github.com/個人のGitHubアカウント/analysis-container.git
+git clone https://github.com/Wakayama-SocSEL/卒業年度_名字.git
+git clone https://github.com/個人のGitHubアカウント/lab-modules.git
 ```
 
 3. Dockerコンテナを起動します
 ```bash
-cd analysis-container
+cd 卒業年度_名字
 ./task up
 ```
 

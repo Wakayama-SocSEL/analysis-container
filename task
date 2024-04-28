@@ -4,14 +4,6 @@ export USER_UID=$(whoami | id -u)
 export USER_GID=$(whoami | id -g)
 
 if [ "$1" = "up" ]; then
-    if [ ! -d ../lab-modules ]\
-    && [[ `git remote get-url origin` =~ https://github.com/([^/]+)/ ]]\
-    && wget --spider $BASH_REMATCH"lab-modules"; then
-        git clone $BASH_REMATCH"lab-modules.git" ../lab-modules
-    elif [ ! -d ../lab-modules ]; then
-        git clone "https://github.com/Wakayama-SocSEL/lab-modules.git" ../lab-modules
-    fi
-
     docker-compose up ${@:2}
 elif [ "$1" = "down" ]; then
     docker-compose down --rmi local
