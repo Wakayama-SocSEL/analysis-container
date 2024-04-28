@@ -19,5 +19,6 @@ services:
       USER_GID: $USER_GID
     user: root
     volumes:
-      - .:/workspace
+      - .:/workspace/analysis-container
+      - ../lab-modules:/workspace/lab-modules
     working_dir: /workspace

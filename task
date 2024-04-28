@@ -4,12 +4,12 @@ export USER_UID=$(whoami | id -u)
 export USER_GID=$(whoami | id -g)
 
 if [ "$1" = "up" ]; then
-    if [ ! -d socsel-analysis-modules ]\
+    if [ ! -d ../lab-modules ]\
     && [[ `git remote get-url origin` =~ https://github.com/([^/]+)/ ]]\
-    && wget --spider $BASH_REMATCH"socsel-analysis-modules"; then
-        git clone $BASH_REMATCH"socsel-analysis-modules.git"
-    elif [ ! -d socsel-analysis-modules ]; then
-        git clone "https://github.com/Wakayama-SocSEL/socsel-analysis-modules.git"
+    && wget --spider $BASH_REMATCH"lab-modules"; then
+        git clone $BASH_REMATCH"lab-modules.git" ../lab-modules
+    elif [ ! -d ../lab-modules ]; then
+        git clone "https://github.com/Wakayama-SocSEL/lab-modules.git" ../lab-modules
     fi
 
     docker-compose up ${@:2}
