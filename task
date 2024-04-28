@@ -7,4 +7,14 @@ if [ "$1" = "up" ]; then
     docker-compose up ${@:2}
 elif [ "$1" = "down" ]; then
     docker-compose down --rmi local
+elif [ "$1" = "install" ]; then
+    rm -r ../lab-modules/dist
+    poetry build -C ../lab-modules
+    mv `find ../lab-modules/dist/*.tar.gz` lib/socsel.tar.gz
+    rm -r ../lab-modules/dist
+    pip3 install lib/socsel.tar.gz
+elif [ "$1" = "run" ]; then
+    for file in `find src -name *.py`; do
+        python3 $file
+    done
 fi
